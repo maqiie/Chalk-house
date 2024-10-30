@@ -151,7 +151,19 @@ export default function ChalkHouse() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-50 text-gray-900">
+    <div className="min-h-screen bg-gray-50 text-gray-900 relative">
+      {/* Logo Background Overlay */}
+      <div
+        className="absolute inset-0 bg-center bg-no-repeat z-0"
+        style={{
+          backgroundImage: `url(${logo})`,
+          backgroundSize: "contain", // Adjusted to 'contain' for better fitting
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          opacity: 0.1, // Adjust opacity for subtle effect
+          filter: "blur(10px)", // Adding blur effect for softness
+        }}
+      />
       {/* Header */}
       <header className="bg-black text-white shadow-md fixed w-full z-10">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
@@ -229,12 +241,6 @@ export default function ChalkHouse() {
         </AnimatePresence>
       </header>
 
-      {/* Logo Background Overlay */}
-      <div
-        className="absolute inset-0 bg-center bg-no-repeat bg-contain opacity-10 z-0"
-        style={{ backgroundImage: `url(${logo})` }}
-      />
-
       {/* Hero Section with Mixed Animations */}
       <section id="home" className="relative h-screen overflow-hidden">
         {carouselImages.map((image, index) => (
@@ -284,7 +290,7 @@ export default function ChalkHouse() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.6, duration: 0.8, ease: "easeOut" }}
             href="#book"
-            className="bg-gradient-to-r from-red-500 to-yellow-500 text-white font-bold py-4 px-10 rounded-full shadow-2xl hover:shadow-xl transition-transform duration-300 transform hover:scale-110 focus:ring-4 focus:ring-red-500 focus:outline-none"
+            className="bg-gradient-to-r from-red-500 to-yellow-500 text-white font-bold py-4 px-10 rounded-full shadow-2xl hover:shadow-xl transition-transform duration-300 transform hover:scale-110 focus:ring-4 focus:ring-red-500 focus:outline-none animate-heartbeat" // Use the animate class here
           >
             Reserve Your Spot
           </motion.a>
@@ -539,16 +545,16 @@ export default function ChalkHouse() {
       {/* Table Booking Section */}
       <section
         id="book"
-        className="py-20 bg-gradient-to-b from-gray-100 to-gray-200"
+        className="py-20 bg-gradient-to-b from-gray-50 to-gray-200"
       >
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold mb-12 text-center text-gray-800">
+          <h2 className="text-5xl font-bold mb-12 text-center text-gray-800">
             Book a Table
           </h2>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Available Tables Section */}
             <div className="lg:col-span-2 bg-white rounded-lg shadow-lg p-8">
-              <h3 className="text-2xl font-semibold mb-6 text-gray-700">
+              <h3 className="text-3xl font-semibold mb-6 text-gray-700">
                 Available Tables
               </h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
@@ -556,21 +562,21 @@ export default function ChalkHouse() {
                   <button
                     key={table.id}
                     onClick={() => setSelectedTable(table)}
-                    className={`flex flex-col items-center justify-center p-6 rounded-lg shadow-md transition-transform transform duration-300 ${
+                    className={`flex flex-col items-center justify-center p-6 rounded-lg shadow-lg transition-transform transform duration-300 ${
                       table.isAvailable
-                        ? "bg-green-50 hover:bg-green-100 text-green-700"
-                        : "bg-red-50 text-red-400 cursor-not-allowed"
+                        ? "bg-green-100 hover:bg-green-200 text-green-700"
+                        : "bg-red-100 text-red-400 cursor-not-allowed"
                     } ${
                       selectedTable?.id === table.id
-                        ? "scale-105 border border-red-500"
+                        ? "scale-105 border-2 border-blue-500"
                         : ""
                     }`}
                     disabled={!table.isAvailable}
                   >
-                    <span className="font-semibold text-lg mb-2">
+                    <span className="font-semibold text-xl mb-2">
                       {table.name}
                     </span>
-                    <span className="text-sm">{table.type}</span>
+                    <span className="text-md">{table.type}</span>
                     {table.isAvailable ? (
                       <svg
                         className="w-8 h-8 text-green-600 mt-4"
@@ -603,7 +609,7 @@ export default function ChalkHouse() {
 
             {/* Booking Form */}
             <div className="bg-white rounded-lg shadow-lg p-8">
-              <h3 className="text-2xl font-semibold mb-6 text-gray-700">
+              <h3 className="text-3xl font-semibold mb-6 text-gray-700">
                 Book Your Table
               </h3>
               <form onSubmit={bookTable} className="space-y-5">
@@ -656,6 +662,22 @@ export default function ChalkHouse() {
                 </div>
                 <div>
                   <label
+                    htmlFor="guests"
+                    className="block text-sm font-medium text-gray-700"
+                  >
+                    Number of Guests
+                  </label>
+                  <input
+                    type="number"
+                    id="guests"
+                    min="1"
+                    required
+                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+                    placeholder="Enter number of guests"
+                  />
+                </div>
+                <div>
+                  <label
                     htmlFor="phone"
                     className="block text-sm font-medium text-gray-700"
                   >
@@ -686,7 +708,17 @@ export default function ChalkHouse() {
                   }`}
                   disabled={!selectedTable}
                 >
-                  Book Now
+                  <span className="flex items-center justify-center">
+                    <svg
+                      className="w-5 h-5 mr-2"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path d="M4 2a1 1 0 011-1h10a1 1 0 011 1v2h-2V2H5v2H3V2z" />
+                      <path d="M5 7a1 1 0 011-1h8a1 1 0 011 1v10a1 1 0 01-1 1H6a1 1 0 01-1-1V7z" />
+                    </svg>
+                    Book Now
+                  </span>
                 </button>
               </form>
             </div>
@@ -727,15 +759,19 @@ export default function ChalkHouse() {
       {/* Contact Section */}
       <section id="contact" className="py-20 bg-gray-100">
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold mb-12 text-center">Contact Us</h2>
-          <div className="flex flex-col md:flex-row justify-between items-start">
+          <h2 className="text-4xl font-bold mb-12 text-center text-gray-800">
+            Contact Us
+          </h2>
+          <div className="flex flex-col md:flex-row justify-center items-start space-y-8 md:space-y-0 md:space-x-8">
             <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: -20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="md:w-1/2 mb-8 md:mb-0"
+              className="w-full md:w-1/2 p-6 bg-white rounded-lg shadow-lg border border-gray-200"
             >
-              <h3 className="text-2xl font-semibold mb-4">Get in Touch</h3>
+              <h3 className="text-2xl font-semibold mb-4 text-gray-700">
+                Get in Touch
+              </h3>
               <form className="space-y-4">
                 <div>
                   <label
@@ -748,7 +784,7 @@ export default function ChalkHouse() {
                     type="text"
                     id="name"
                     name="name"
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-red-300 focus:ring focus:ring-red-200 focus:ring-opacity-50"
+                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-red-400 focus:ring focus:ring-red-200 focus:ring-opacity-50"
                     required
                   />
                 </div>
@@ -763,7 +799,7 @@ export default function ChalkHouse() {
                     type="email"
                     id="email"
                     name="email"
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-red-300 focus:ring focus:ring-red-200 focus:ring-opacity-50"
+                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-red-400 focus:ring focus:ring-red-200 focus:ring-opacity-50"
                     required
                   />
                 </div>
@@ -778,38 +814,46 @@ export default function ChalkHouse() {
                     id="message"
                     name="message"
                     rows={4}
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-red-300 focus:ring focus:ring-red-200 focus:ring-opacity-50"
+                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-red-400 focus:ring focus:ring-red-200 focus:ring-opacity-50"
                     required
                   ></textarea>
                 </div>
                 <button
                   type="submit"
-                  className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full transition-colors duration-300"
+                  className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full transition-colors duration-300 w-full"
                 >
                   Send Message
                 </button>
               </form>
             </motion.div>
             <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="md:w-1/2 md:pl-8"
+              className="w-full md:w-1/2"
             >
-              <h3 className="text-2xl font-semibold mb-4">Visit Us</h3>
-              <p className="flex items-center mb-2">
-                <MapPin className="mr-2" /> 123 Pool Street, Nairobi, Kenya
-              </p>
-              <p className="flex items-center mb-2">
-                <Phone className="mr-2" /> +254 123 456 789
-              </p>
-              <p className="flex items-center mb-4">
-                <Mail className="mr-2" /> info@thechalkhouse.com
-              </p>
-              <h4 className="text-xl font-semibold mb-2">Opening Hours</h4>
-              <p className="mb-1">Monday - Thursday: 2pm - 11pm</p>
-              <p className="mb-1">Friday - Saturday: 12pm - 2am</p>
-              <p>Sunday: 12pm - 10pm</p>
+              <h3 className="text-2xl font-semibold mb-4 text-gray-700">
+                Visit Us
+              </h3>
+              <div className="flex flex-col space-y-2">
+                <p className="flex items-center text-gray-600">
+                  <MapPin className="mr-2" /> 123 Pool Street, Nairobi, Kenya
+                </p>
+                <p className="flex items-center text-gray-600">
+                  <Phone className="mr-2" /> +254 123 456 789
+                </p>
+                <p className="flex items-center text-gray-600">
+                  <Mail className="mr-2" /> info@thechalkhouse.com
+                </p>
+              </div>
+              <h4 className="text-xl font-semibold mt-6 mb-2 text-gray-700">
+                Opening Hours
+              </h4>
+              <div className="text-gray-600">
+                <p className="mb-1">Monday - Thursday: 2pm - 11pm</p>
+                <p className="mb-1">Friday - Saturday: 12pm - 2am</p>
+                <p>Sunday: 12pm - 10pm</p>
+              </div>
             </motion.div>
           </div>
         </div>
@@ -848,7 +892,7 @@ export default function ChalkHouse() {
           </div>
           <hr className="my-8 border-gray-700" />
           <div className="flex flex-col md:flex-row justify-between items-center">
-            <p>&copy; 2023 The Chalkhouse. All rights reserved.</p>
+            <p>&copy; 2024 The Chalkhouse. All rights reserved.</p>
             <div className="flex space-x-4 mt-4 md:mt-0">
               {["Facebook", "Instagram", "Twitter"].map((social) => (
                 <a
