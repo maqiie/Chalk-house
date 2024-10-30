@@ -150,7 +150,6 @@ export default function ChalkHouse() {
     };
   }, []);
 
-
   return (
     <div className="min-h-screen bg-gray-50 text-gray-900">
       {/* Header */}
@@ -261,37 +260,35 @@ export default function ChalkHouse() {
           />
         ))}
 
-<div className="absolute inset-0 bg-black bg-opacity-40 flex flex-col items-center justify-center text-center text-white z-10 px-4">
-  <motion.h2
-    initial={{ opacity: 0, y: 40 }}
-    animate={{ opacity: 1, y: 0 }}
-    transition={{ delay: 0.2, duration: 1, ease: "easeOut" }}
-    className="text-6xl md:text-7xl font-bold mb-6 drop-shadow-lg leading-tight"
-  >
-    Welcome to The Chalkhouse
-  </motion.h2>
+        <div className="absolute inset-0 bg-black bg-opacity-40 flex flex-col items-center justify-center text-center text-white z-10 px-4">
+          <motion.h2
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 1, ease: "easeOut" }}
+            className="text-6xl md:text-7xl font-bold mb-6 drop-shadow-lg leading-tight"
+          >
+            Welcome to The Chalkhouse
+          </motion.h2>
 
-  <motion.p
-    initial={{ opacity: 0, y: 30 }}
-    animate={{ opacity: 1, y: 0 }}
-    transition={{ delay: 0.4, duration: 1.2, ease: "easeOut" }}
-    className="text-xl md:text-3xl font-light mb-12 max-w-3xl mx-auto leading-relaxed tracking-wide drop-shadow-md"
-  >
-    Where skills meet chill - Your ultimate pool & billiards experience
-  </motion.p>
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4, duration: 1.2, ease: "easeOut" }}
+            className="text-xl md:text-3xl font-light mb-12 max-w-3xl mx-auto leading-relaxed tracking-wide drop-shadow-md"
+          >
+            Where skills meet chill - Your ultimate pool & billiards experience
+          </motion.p>
 
-  <motion.a
-    initial={{ opacity: 0, scale: 0.8 }}
-    animate={{ opacity: 1, scale: 1 }}
-    transition={{ delay: 0.6, duration: 0.8, ease: "easeOut" }}
-    href="#book"
-    className="bg-gradient-to-r from-red-500 to-yellow-500 text-white font-bold py-4 px-10 rounded-full shadow-2xl hover:shadow-xl transition-transform duration-300 transform hover:scale-110 focus:ring-4 focus:ring-red-500 focus:outline-none"
-  >
-    Reserve Your Spot
-  </motion.a>
-</div>
-
-
+          <motion.a
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.6, duration: 0.8, ease: "easeOut" }}
+            href="#book"
+            className="bg-gradient-to-r from-red-500 to-yellow-500 text-white font-bold py-4 px-10 rounded-full shadow-2xl hover:shadow-xl transition-transform duration-300 transform hover:scale-110 focus:ring-4 focus:ring-red-500 focus:outline-none"
+          >
+            Reserve Your Spot
+          </motion.a>
+        </div>
 
         {/* Navigation Buttons */}
         <motion.button
