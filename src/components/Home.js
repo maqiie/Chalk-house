@@ -870,128 +870,121 @@ export default function ChalkHouse() {
       </section>
 
       {/* Table Booking Section */}
-      <section
-        id="book"
-        className="py-20 bg-gradient-to-b from-gray-200 to-gray-300"
-      >
-        <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold mb-12 text-center text-gray-800">
-            Book a Table
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-white rounded-lg shadow-lg p-6">
-              <h3 className="text-2xl font-semibold mb-4 text-gray-700">
-                Available Tables
-              </h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {tables.map((table) => (
-                  <button
-                    key={table.id}
-                    onClick={() => setSelectedTable(table)}
-                    className={`flex items-center justify-between p-4 rounded-lg transition-colors duration-300 ${
-                      table.isAvailable
-                        ? "bg-green-500 hover:bg-green-600 text-white"
-                        : "bg-red-500 cursor-not-allowed text-gray-200"
-                    }`}
-                    disabled={!table.isAvailable}
-                  >
-                    <span className="font-semibold">{table.name}</span>
-                    <span>{table.type}</span>
-                  </button>
-                ))}
-              </div>
-            </div>
-            <div className="bg-white rounded-lg shadow-lg p-6">
-              <h3 className="text-2xl font-semibold mb-4 text-gray-700">
-                Book Your Table
-              </h3>
-              <form onSubmit={bookTable} className="space-y-4">
-                <div>
-                  <label
-                    htmlFor="table"
-                    className="block text-sm font-medium text-gray-700"
-                  >
-                    Selected Table
-                  </label>
-                  <input
-                    type="text"
-                    id="table"
-                    value={selectedTable ? selectedTable.name : ""}
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring focus:ring-red-200 focus:ring-opacity-50"
-                    readOnly
-                  />
-                </div>
-                <div>
-                  <label
-                    htmlFor="date"
-                    className="block text-sm font-medium text-gray-700"
-                  >
-                    Date
-                  </label>
-                  <input
-                    type="date"
-                    id="date"
-                    value={bookingDate}
-                    onChange={(e) => setBookingDate(e.target.value)}
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring focus:ring-red-200 focus:ring-opacity-50"
-                    required
-                  />
-                </div>
-                <div>
-                  <label
-                    htmlFor="time"
-                    className="block text-sm font-medium text-gray-700"
-                  >
-                    Time
-                  </label>
-                  <input
-                    type="time"
-                    id="time"
-                    value={bookingTime}
-                    onChange={(e) => setBookingTime(e.target.value)}
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring focus:ring-red-200 focus:ring-opacity-50"
-                    required
-                  />
-                </div>
-                <div>
-                  <label
-                    htmlFor="phone"
-                    className="block text-sm font-medium text-gray-700"
-                  >
-                    Phone Number
-                  </label>
-                  <input
-                    type="tel"
-                    id="phone"
-                    placeholder="Enter your phone number"
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring focus:ring-red-200 focus:ring-opacity-50"
-                    required
-                  />
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-lg font-medium text-gray-800">
-                    Reservation Fee:
-                  </span>
-                  <span className="text-lg font-semibold text-red-600">
-                    50 KSH
-                  </span>
-                </div>
-                <button
-                  type="submit"
-                  className={`w-full py-2 px-4 font-bold text-white rounded-full transition-colors duration-300 ${
-                    selectedTable
-                      ? "bg-red-600 hover:bg-red-700"
-                      : "bg-gray-400 cursor-not-allowed"
-                  }`}
-                  disabled={!selectedTable}
-                >
-                  Book Now
-                </button>
-              </form>
-            </div>
-          </div>
+<section id="book" className="py-20 bg-gradient-to-b from-gray-100 to-gray-200">
+  <div className="container mx-auto px-4">
+    <h2 className="text-4xl font-bold mb-12 text-center text-gray-800">
+      Book a Table
+    </h2>
+    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      {/* Available Tables Section */}
+      <div className="lg:col-span-2 bg-white rounded-lg shadow-lg p-8">
+        <h3 className="text-2xl font-semibold mb-6 text-gray-700">
+          Available Tables
+        </h3>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+          {tables.slice(0, 6).map((table) => (
+            <button
+              key={table.id}
+              onClick={() => setSelectedTable(table)}
+              className={`flex flex-col items-center justify-center p-6 rounded-lg shadow-md transition-transform transform duration-300 ${
+                table.isAvailable
+                  ? "bg-green-50 hover:bg-green-100 text-green-700"
+                  : "bg-red-50 text-red-400 cursor-not-allowed"
+              } ${
+                selectedTable?.id === table.id ? "scale-105 border border-red-500" : ""
+              }`}
+              disabled={!table.isAvailable}
+            >
+              <span className="font-semibold text-lg mb-2">{table.name}</span>
+              <span className="text-sm">{table.type}</span>
+              {table.isAvailable ? (
+                <svg className="w-8 h-8 text-green-600 mt-4" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-11.293a1 1 0 00-1.414 0L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4a1 1 0 000-1.414z" clipRule="evenodd" />
+                </svg>
+              ) : (
+                <svg className="w-8 h-8 text-red-500 mt-4" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M18 10A8 8 0 11-1 10 8 8 0 0118 10zm-4-4a1 1 0 00-1.414 1.414L14.586 10l-2.293 2.293a1 1 0 001.414 1.414L16 11.414l2.293 2.293a1 1 0 001.414-1.414L17.414 10l2.293-2.293A1 1 0 0018.293 6.707L16 9.414l-2.293-2.293z" clipRule="evenodd" />
+                </svg>
+              )}
+            </button>
+          ))}
         </div>
-      </section>
+      </div>
+
+      {/* Booking Form */}
+      <div className="bg-white rounded-lg shadow-lg p-8">
+        <h3 className="text-2xl font-semibold mb-6 text-gray-700">
+          Book Your Table
+        </h3>
+        <form onSubmit={bookTable} className="space-y-5">
+          <div>
+            <label htmlFor="table" className="block text-sm font-medium text-gray-700">
+              Selected Table
+            </label>
+            <input
+              type="text"
+              id="table"
+              value={selectedTable ? selectedTable.name : ""}
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+              readOnly
+            />
+          </div>
+          <div>
+            <label htmlFor="date" className="block text-sm font-medium text-gray-700">
+              Date
+            </label>
+            <input
+              type="date"
+              id="date"
+              value={bookingDate}
+              onChange={(e) => setBookingDate(e.target.value)}
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+              required
+            />
+          </div>
+          <div>
+            <label htmlFor="time" className="block text-sm font-medium text-gray-700">
+              Time
+            </label>
+            <input
+              type="time"
+              id="time"
+              value={bookingTime}
+              onChange={(e) => setBookingTime(e.target.value)}
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+              required
+            />
+          </div>
+          <div>
+            <label htmlFor="phone" className="block text-sm font-medium text-gray-700">
+              Phone Number
+            </label>
+            <input
+              type="tel"
+              id="phone"
+              placeholder="Enter your phone number"
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+              required
+            />
+          </div>
+          <div className="flex justify-between items-center pt-4">
+            <span className="text-lg font-medium text-gray-800">Reservation Fee:</span>
+            <span className="text-lg font-semibold text-red-600">50 KSH</span>
+          </div>
+          <button
+            type="submit"
+            className={`w-full py-2 px-4 font-bold text-white rounded-lg transition-transform transform duration-300 ${
+              selectedTable ? "bg-blue-600 hover:bg-blue-700 scale-105" : "bg-gray-400 cursor-not-allowed"
+            }`}
+            disabled={!selectedTable}
+          >
+            Book Now
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
 
       {/* WiFi Packages Section */}
       <section id="wifi" className="py-20 bg-white">
