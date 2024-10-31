@@ -66,13 +66,14 @@ export default function ChalkHouse() {
     game: "",
     prize: "",
   });
+
   const [tables, setTables] = useState(initialTables);
   const [selectedTable, setSelectedTable] = useState(null);
   const [bookingDate, setBookingDate] = useState("");
   const [bookingTime, setBookingTime] = useState("");
   const [message, setMessage] = useState("");
   const [phone, setPhone] = useState("");
-  const {guests, setGuests} = useState("");
+  const [guests, setGuests] = useState("");
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -432,300 +433,313 @@ export default function ChalkHouse() {
         </div>
       </section>
 
-   {/* Enhanced Player Challenges Section */}
-<section id="challenges" className="py-20 bg-gradient-to-b from-white to-gray-100">
-  <div className="container mx-auto px-4">
-    <h2 className="text-4xl font-bold mb-12 text-center text-gray-800">
-      Player Challenges
-    </h2>
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-      {challenges.map((challenge, index) => (
-        <motion.div
-          key={challenge.id}
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: index * 0.1 }}
-          className="bg-white rounded-lg shadow-xl p-6 flex justify-between items-center transform transition-all duration-300 hover:shadow-2xl hover:scale-105"
-        >
-          <div>
-            <h3 className="text-xl font-semibold text-gray-800 mb-1">
-              {challenge.player}
-            </h3>
-            <p className="text-gray-600 text-sm mb-1">Game: {challenge.game}</p>
-            <p className="text-green-600 font-semibold text-sm">
-              Prize: {challenge.prize} KSH
-            </p>
-          </div>
-          <button
-            onClick={() => acceptChallenge(challenge.id)}
-            className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full transition-transform duration-300 transform hover:scale-105 focus:ring-2 focus:ring-red-300 focus:ring-opacity-50"
-          >
-            Accept Challenge
-          </button>
-        </motion.div>
-      ))}
-    </div>
+      <section
+        id="challenges"
+        className="py-20 bg-gradient-to-b from-white to-gray-100 relative z-10"
+      >
+        <div className="container mx-auto px-4 relative">
+          <h2 className="text-4xl font-bold mb-12 text-center text-gray-800">
+            Player Challenges
+          </h2>
 
-    <motion.div
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-      className="bg-white rounded-lg shadow-lg p-8 max-w-lg mx-auto"
-    >
-      <h3 className="text-2xl font-semibold text-gray-800 mb-6 text-center">
-        Post a New Challenge
-      </h3>
-      <form onSubmit={handleNewChallenge} className="space-y-6">
-        <div>
-          <label
-            htmlFor="player"
-            className="block text-sm font-medium text-gray-700"
-          >
-            Your Name
-          </label>
-          <input
-            type="text"
-            id="player"
-            className="mt-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-red-400 focus:ring focus:ring-red-200 focus:ring-opacity-50 transition-all"
-            value={newChallenge.player}
-            onChange={(e) =>
-              setNewChallenge({ ...newChallenge, player: e.target.value })
-            }
-            required
-          />
-        </div>
-        <div>
-          <label
-            htmlFor="game"
-            className="block text-sm font-medium text-gray-700"
-          >
-            Game
-          </label>
-          <select
-            id="game"
-            className="mt-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-red-400 focus:ring focus:ring-red-200 focus:ring-opacity-50 transition-all"
-            value={newChallenge.game}
-            onChange={(e) =>
-              setNewChallenge({ ...newChallenge, game: e.target.value })
-            }
-            required
-          >
-            <option value="">Select a game</option>
-            <option value="8-Ball">8-Ball</option>
-            <option value="9-Ball">9-Ball</option>
-            <option value="Snooker">Snooker</option>
-          </select>
-        </div>
-        <div>
-          <label
-            htmlFor="prize"
-            className="block text-sm font-medium text-gray-700"
-          >
-            Prize Amount (KSH)
-          </label>
-          <input
-            type="number"
-            id="prize"
-            className="mt-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-red-400 focus:ring focus:ring-red-200 focus:ring-opacity-50 transition-all"
-            value={newChallenge.prize}
-            onChange={(e) =>
-              setNewChallenge({ ...newChallenge, prize: e.target.value })
-            }
-            required
-          />
-        </div>
-        <button
-          type="submit"
-          className="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-full transition-all duration-300 transform hover:scale-105 focus:ring-2 focus:ring-red-300 focus:ring-opacity-50"
-        >
-          Post Challenge
-        </button>
-      </form>
-    </motion.div>
-  </div>
-</section>
-
-
-      {/* Table Booking Section */}
-      <section id="book" className="py-20 bg-gradient-to-b from-gray-100 to-gray-300">
-      <div className="container mx-auto px-4">
-        <h2 className="text-5xl font-extrabold mb-12 text-center text-gray-800 tracking-tight">
-          Book a Table
-        </h2>
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-          {/* Available Tables Section */}
-          <div className="lg:col-span-2 bg-white rounded-xl shadow-lg p-8 border border-gray-200">
-            <h3 className="text-3xl font-semibold mb-8 text-gray-800">
-              Available Tables
-            </h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-              {tables.map((table) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+            {challenges.map((challenge, index) => (
+              <motion.div
+                key={challenge.id}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="bg-white rounded-lg shadow-xl p-6 flex justify-between items-center transform transition-all duration-300 hover:shadow-2xl hover:scale-105 relative z-20"
+              >
+                <div>
+                  <h3 className="text-xl font-semibold text-gray-800 mb-1">
+                    {challenge.player}
+                  </h3>
+                  <p className="text-gray-600 text-sm mb-1">
+                    Game: {challenge.game}
+                  </p>
+                  <p className="text-green-600 font-semibold text-sm">
+                    Prize: {challenge.prize} KSH
+                  </p>
+                </div>
                 <button
-                  key={table.id}
-                  onClick={() => setSelectedTable(table)}
-                  className={`flex flex-col items-center justify-center p-6 h-32 rounded-lg shadow-lg transform transition duration-300 ease-in-out ${
-                    table.isAvailable
-                      ? "bg-gradient-to-r from-green-100 to-green-200 hover:from-green-200 hover:to-green-300 text-green-800"
-                      : "bg-gradient-to-r from-red-100 to-red-200 text-red-500 cursor-not-allowed"
-                  } ${
-                    selectedTable?.id === table.id
-                      ? "scale-105 ring-4 ring-offset-2 ring-blue-400"
-                      : ""
-                  }`}
-                  disabled={!table.isAvailable}
+                  onClick={() => acceptChallenge(challenge.id)}
+                  className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full transition-transform duration-300 transform hover:scale-105 focus:ring-2 focus:ring-red-300 focus:ring-opacity-50 cursor-pointer"
                 >
-                  <span className="font-semibold text-xl mb-2">{table.name}</span>
-                  <span className="text-md">{table.type}</span>
-                  {table.isAvailable ? (
-                    <svg
-                      className="w-8 h-8 mt-auto text-green-600"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-11.293a1 1 0 00-1.414 0L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4a1 1 0 000-1.414z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                  ) : (
-                    <svg
-                      className="w-8 h-8 mt-auto text-red-500"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                  )}
+                  Accept Challenge
                 </button>
-              ))}
-            </div>
+              </motion.div>
+            ))}
           </div>
 
-          {/* Booking Form */}
-          <div className="bg-white rounded-xl shadow-lg p-8 border border-gray-200">
-            <h3 className="text-3xl font-semibold mb-8 text-gray-800">
-              Book Your Table
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="bg-white rounded-lg shadow-lg p-8 max-w-lg mx-auto relative z-20"
+          >
+            <h3 className="text-2xl font-semibold text-gray-800 mb-6 text-center">
+              Post a New Challenge
             </h3>
-            <form onSubmit={bookTable} className="space-y-6">
-              <div>
+            <form onSubmit={handleNewChallenge} className="space-y-6">
+              <div className="relative">
                 <label
-                  htmlFor="table"
-                  className="block text-sm font-medium text-gray-600"
+                  htmlFor="player"
+                  className="block text-sm font-medium text-gray-700"
                 >
-                  Selected Table
+                  Your Name
                 </label>
                 <input
                   type="text"
-                  id="table"
-                  value={selectedTable ? selectedTable.name : ""}
-                  className="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
-                  readOnly
-                />
-              </div>
-              <div>
-                <label
-                  htmlFor="date"
-                  className="block text-sm font-medium text-gray-600"
-                >
-                  Date
-                </label>
-                <input
-                  type="date"
-                  id="date"
-                  value={bookingDate}
-                  onChange={(e) => setBookingDate(e.target.value)}
-                  className="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+                  id="player"
+                  className="mt-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-red-400 focus:ring focus:ring-red-200 focus:ring-opacity-50 transition-all cursor-text relative z-30"
+                  value={newChallenge.player || ""}
+                  onChange={(e) =>
+                    setNewChallenge({ ...newChallenge, player: e.target.value })
+                  }
                   required
                 />
               </div>
-              <div>
+
+              <div className="relative">
                 <label
-                  htmlFor="time"
-                  className="block text-sm font-medium text-gray-600"
+                  htmlFor="game"
+                  className="block text-sm font-medium text-gray-700"
                 >
-                  Time
+                  Game
                 </label>
-                <input
-                  type="time"
-                  id="time"
-                  value={bookingTime}
-                  onChange={(e) => setBookingTime(e.target.value)}
-                  className="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+                <select
+                  id="game"
+                  className="mt-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-red-400 focus:ring focus:ring-red-200 focus:ring-opacity-50 transition-all cursor-pointer relative z-30"
+                  value={newChallenge.game || ""}
+                  onChange={(e) =>
+                    setNewChallenge({ ...newChallenge, game: e.target.value })
+                  }
                   required
-                />
-              </div>
-              <div>
-                <label
-                  htmlFor="guests"
-                  className="block text-sm font-medium text-gray-600"
                 >
-                  Number of Guests
+                  <option value="">Select a game</option>
+                  <option value="8-Ball">8-Ball</option>
+                  <option value="9-Ball">9-Ball</option>
+                  <option value="Snooker">Snooker</option>
+                </select>
+              </div>
+
+              <div className="relative">
+                <label
+                  htmlFor="prize"
+                  className="block text-sm font-medium text-gray-700"
+                >
+                  Prize Amount (KSH)
                 </label>
                 <input
                   type="number"
-                  id="guests"
-                  min="1"
-                  value={guests}
-                  onChange={(e) => setGuests(parseInt(e.target.value))}
-                  className="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+                  id="prize"
+                  className="mt-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-red-400 focus:ring focus:ring-red-200 focus:ring-opacity-50 transition-all cursor-text relative z-30"
+                  value={newChallenge.prize || ""}
+                  onChange={(e) =>
+                    setNewChallenge({ ...newChallenge, prize: e.target.value })
+                  }
                   required
                 />
               </div>
-              <div>
-                <label
-                  htmlFor="phone"
-                  className="block text-sm font-medium text-gray-600"
-                >
-                  Phone Number
-                </label>
-                <input
-                  type="tel"
-                  id="phone"
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
-                  placeholder="Enter your phone number"
-                  className="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
-                  required
-                />
-              </div>
-              <div className="flex justify-between items-center pt-6">
-                <span className="text-lg font-medium text-gray-800">
-                  Reservation Fee:
-                </span>
-                <span className="text-lg font-semibold text-red-600">50 KSH</span>
-              </div>
+
               <button
                 type="submit"
-                className={`w-full py-3 font-bold text-white rounded-lg transition duration-300 transform ${
-                  selectedTable
-                    ? "bg-blue-600 hover:bg-blue-700 hover:scale-105"
-                    : "bg-gray-400 cursor-not-allowed"
-                }`}
-                disabled={!selectedTable}
+                className="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-full transition-all duration-300 transform hover:scale-105 focus:ring-2 focus:ring-red-300 focus:ring-opacity-50 cursor-pointer relative z-30"
               >
-                <span className="flex items-center justify-center">
-                  <svg
-                    className="w-5 h-5 mr-2"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path d="M4 2a1 1 0 011-1h10a1 1 0 011 1v2h-2V2H5v2H3V2z" />
-                    <path d="M5 7a1 1 0 011-1h8a1 1 0 011 1v10a1 1 0 01-1 1H6a1 1 0 01-1-1V7z" />
-                  </svg>
-                  Book Now
-                </span>
+                Post Challenge
               </button>
             </form>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Table Booking Section */}
+      <section
+        id="book"
+        className="py-20 bg-gradient-to-b from-gray-100 to-gray-300"
+      >
+        <div className="container mx-auto px-4">
+          <h2 className="text-5xl font-extrabold mb-12 text-center text-gray-800 tracking-tight">
+            Book a Table
+          </h2>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+            {/* Available Tables Section */}
+            <div className="lg:col-span-2 bg-white rounded-xl shadow-lg p-8 border border-gray-200">
+              <h3 className="text-3xl font-semibold mb-8 text-gray-800">
+                Available Tables
+              </h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+                {tables.map((table) => (
+                  <button
+                    key={table.id}
+                    onClick={() => setSelectedTable(table)}
+                    className={`flex flex-col items-center justify-center p-6 h-32 rounded-lg shadow-lg transform transition duration-300 ease-in-out ${
+                      table.isAvailable
+                        ? "bg-gradient-to-r from-green-100 to-green-200 hover:from-green-200 hover:to-green-300 text-green-800"
+                        : "bg-gradient-to-r from-red-100 to-red-200 text-red-500 cursor-not-allowed"
+                    } ${
+                      selectedTable?.id === table.id
+                        ? "scale-105 ring-4 ring-offset-2 ring-blue-400"
+                        : ""
+                    }`}
+                    disabled={!table.isAvailable}
+                  >
+                    <span className="font-semibold text-xl mb-2">
+                      {table.name}
+                    </span>
+                    <span className="text-md">{table.type}</span>
+                    {table.isAvailable ? (
+                      <svg
+                        className="w-8 h-8 mt-auto text-green-600"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-11.293a1 1 0 00-1.414 0L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4a1 1 0 000-1.414z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                    ) : (
+                      <svg
+                        className="w-8 h-8 mt-auto text-red-500"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                    )}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Booking Form */}
+            <div className="bg-white rounded-xl shadow-lg p-8 border border-gray-200">
+              <h3 className="text-3xl font-semibold mb-8 text-gray-800">
+                Book Your Table
+              </h3>
+              <form onSubmit={bookTable} className="space-y-6">
+                <div>
+                  <label
+                    htmlFor="table"
+                    className="block text-sm font-medium text-gray-600"
+                  >
+                    Selected Table
+                  </label>
+                  <input
+                    type="text"
+                    id="table"
+                    value={selectedTable ? selectedTable.name : ""}
+                    className="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+                    readOnly
+                  />
+                </div>
+                <div>
+                  <label
+                    htmlFor="date"
+                    className="block text-sm font-medium text-gray-600"
+                  >
+                    Date
+                  </label>
+                  <input
+                    type="date"
+                    id="date"
+                    value={bookingDate}
+                    onChange={(e) => setBookingDate(e.target.value)}
+                    className="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+                    required
+                  />
+                </div>
+                <div>
+                  <label
+                    htmlFor="time"
+                    className="block text-sm font-medium text-gray-600"
+                  >
+                    Time
+                  </label>
+                  <input
+                    type="time"
+                    id="time"
+                    value={bookingTime}
+                    onChange={(e) => setBookingTime(e.target.value)}
+                    className="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+                    required
+                  />
+                </div>
+                <div>
+                  <label
+                    htmlFor="guests"
+                    className="block text-sm font-medium text-gray-600"
+                  >
+                    Number of Guests
+                  </label>
+                  <input
+                    type="number"
+                    id="guests"
+                    min="1"
+                    value={guests}
+                    onChange={(e) => setGuests(parseInt(e.target.value))}
+                    className="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+                    required
+                  />
+                </div>
+                <div>
+                  <label
+                    htmlFor="phone"
+                    className="block text-sm font-medium text-gray-600"
+                  >
+                    Phone Number
+                  </label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                    placeholder="Enter your phone number"
+                    className="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+                    required
+                  />
+                </div>
+                <div className="flex justify-between items-center pt-6">
+                  <span className="text-lg font-medium text-gray-800">
+                    Reservation Fee:
+                  </span>
+                  <span className="text-lg font-semibold text-red-600">
+                    50 KSH
+                  </span>
+                </div>
+                <button
+                  type="submit"
+                  className={`w-full py-3 font-bold text-white rounded-lg transition duration-300 transform ${
+                    selectedTable
+                      ? "bg-blue-600 hover:bg-blue-700 hover:scale-105"
+                      : "bg-gray-400 cursor-not-allowed"
+                  }`}
+                  disabled={!selectedTable}
+                >
+                  <span className="flex items-center justify-center">
+                    <svg
+                      className="w-5 h-5 mr-2"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path d="M4 2a1 1 0 011-1h10a1 1 0 011 1v2h-2V2H5v2H3V2z" />
+                      <path d="M5 7a1 1 0 011-1h8a1 1 0 011 1v10a1 1 0 01-1 1H6a1 1 0 01-1-1V7z" />
+                    </svg>
+                    Book Now
+                  </span>
+                </button>
+              </form>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
-
+      </section>
 
       {/* WiFi Packages Section */}
       <section id="wifi" className="py-20 bg-white">
