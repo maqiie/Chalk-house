@@ -849,65 +849,82 @@ export default function ChalkHouse() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-black text-white py-12">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="mb-4 md:mb-0">
-              <h2 className="text-2xl font-bold">The Chalkhouse</h2>
-              <p>Nairobi's Premier Pool and Billiards Destination</p>
-            </div>
-            <nav>
-              <ul className="flex flex-wrap justify-center md:justify-end space-x-4">
-                {[
-                  "Home",
-                  "About",
-                  "Games",
-                  "Challenges",
-                  "Book",
-                  "WiFi",
-                  "Contact",
-                ].map((item) => (
-                  <li key={item}>
-                    <a
-                      href={`#${item.toLowerCase()}`}
-                      className="hover:text-red-500 transition-colors duration-300"
-                    >
-                      {item}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-          </div>
-          <hr className="my-8 border-gray-700" />
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <p>&copy; 2024 The Chalkhouse. All rights reserved.</p>
-            <div className="flex space-x-4 mt-4 md:mt-0">
-              {["Facebook", "Instagram", "Twitter"].map((social) => (
-                <a
-                  key={social}
-                  href="#"
-                  className="text-white hover:text-red-500 transition-colors duration-300"
-                >
-                  <span className="sr-only">{social}</span>
-                  <svg
-                    className="h-6 w-6"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                    aria-hidden="true"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                </a>
-              ))}
-            </div>
-          </div>
-        </div>
-      </footer>
+<footer className="bg-black text-white py-12">
+  <div className="container mx-auto px-4">
+    <div className="flex flex-col md:flex-row justify-between items-center">
+      <div className="mb-4 md:mb-0">
+        <h2 className="text-2xl font-bold">The Chalkhouse</h2>
+        <p>Nairobi's Premier Pool and Billiards Destination</p>
+      </div>
+      <nav>
+        <ul className="flex flex-wrap justify-center md:justify-end space-x-4">
+          {[
+            "Home",
+            "About",
+            "Games",
+            "Challenges",
+            "Book",
+            "WiFi",
+            "Contact",
+          ].map((item) => (
+            <li key={item}>
+              <a
+                href={`#${item.toLowerCase()}`}
+                className="hover:text-red-500 transition-colors duration-300"
+              >
+                {item}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </div>
+    <hr className="my-8 border-gray-700" />
+    <div className="flex flex-col md:flex-row justify-between items-center">
+      <p>&copy; 2024 The Chalkhouse. All rights reserved.</p>
+      <div className="flex space-x-4 mt-4 md:mt-0">
+        {[
+          { name: "Facebook", icon: "M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" },
+          { name: "Instagram", icon: "M7 2C3.686 2 1 4.686 1 8v8c0 3.314 2.686 6 6 6h8c3.314 0 6-2.686 6-6V8c0-3.314-2.686-6-6-6H7zm11.5 6.438c0 .78-.27 1.495-.708 2.058l-5.586 5.586c-.563.563-1.278.878-2.065.878s-1.502-.315-2.065-.878L2.928 10.5A2.985 2.985 0 003.5 8.5c0-.78.27-1.495.708-2.058L9.794 1.856C10.357 1.293 11.072 1 11.859 1c.787 0 1.502.293 2.065.878l5.586 5.586c.563.563.878 1.278.878 2.065zM12 5a7 7 0 100 14 7 7 0 000-14zm0 12a5 5 0 110-10 5 5 0 010 10z" },
+          { name: "Twitter", icon: "M22 5.897c-.795.353-1.65.588-2.548.693A4.523 4.523 0 0021.364 4c-.872.517-1.838.892-2.863 1.096a4.507 4.507 0 00-7.69 4.115C7.69 9.345 4.073 7.99 1.64 5.94c-.766 1.315-.314 3.057 1.016 3.826a4.485 4.485 0 01-2.028-.561v.056c0 1.755 1.246 3.227 2.896 3.564-.303.083-.622.128-.95.128-.232 0-.458-.022-.678-.067.458 1.436 1.79 2.476 3.354 2.506A9.047 9.047 0 010 19.536 12.788 12.788 0 007.67 21c9.195 0 14.206-7.63 14.206-14.266 0-.218-.004-.436-.013-.651A10.068 10.068 0 0024 4.557a9.757 9.757 0 01-2.693.738A4.57 4.57 0 0022 5.897z" },
+          { name: "TikTok", icon: "M12 2a10 10 0 000 20 10 10 0 000-20zM12 4a1 1 0 011 1v4a1 1 0 01-1 1H9v4H8V8h3a1 1 0 001-1V4h-1zm1 16h-1v-2h-1v2H9v-1a1 1 0 00-1-1H8v-1h1a1 1 0 001-1v-1h1v1a1 1 0 001 1h1v1a1 1 0 00-1 1z" }
+        ].map(({ name, icon }) => (
+          <a
+            key={name}
+            href="#"
+            className="text-white hover:text-red-500 transition-colors duration-300"
+            aria-label={name}
+          >
+            <span className="sr-only">{name}</span>
+            <svg
+              className="h-6 w-6"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path d={icon} />
+            </svg>
+          </a>
+        ))}
+      </div>
+    </div>
+
+    {/* Google Maps Embed */}
+    <div className="mt-8">
+      <h3 className="text-xl font-semibold mb-4 text-center">Where to Find Us</h3>
+      <div className="overflow-hidden rounded-lg shadow-md">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.078370218685!2d37.011841175092655!3d-1.1034915354539072!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f4700596c8c7b%3A0xd34ed27bb14b1a4b!2sThe%20chalk%20house!5e0!3m2!1sen!2ske!4v1730661781393!5m2!1sen!2ske"
+          className="w-full h-64 md:h-80 lg:h-96 border-0"
+          allowFullScreen=""
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </div>
+    </div>
+  </div>
+</footer>
+
     </div>
   );
 }
