@@ -25,7 +25,8 @@ import background4 from "../assets/background4.jpg";
 import background5 from "../assets/background5.jpg";
 import background6 from "../assets/background6.jpg";
 import AboutImage from "../assets/About.jpg";
-import logo from "../assets/black logo.pdf";
+// import logo from "../assets/Logo.pdf";
+import BackgroundOverlay from "./Background";
 
 const carouselImages = [
   background1,
@@ -51,10 +52,10 @@ const initialTables = [
 ];
 
 const wifiPackages = [
-  { id: 1, duration: "1 Hour", price: 100 },
-  { id: 2, duration: "2 Hours", price: 180 },
-  { id: 3, duration: "4 Hours", price: 300 },
-  { id: 4, duration: "All Day", price: 500 },
+  { id: 1, duration: "1 Hour", price: 20 },
+  { id: 2, duration: "2 Hours", price: 50 },
+  { id: 3, duration: "4 Hours", price: 100 },
+  { id: 4, duration: "All Day", price: 200 },
 ];
 
 export default function ChalkHouse() {
@@ -156,17 +157,7 @@ export default function ChalkHouse() {
   return (
     <div className="min-h-screen bg-gray-50 text-gray-900 relative">
       {/* Logo Background Overlay */}
-      <div
-        className="absolute inset-0 bg-center bg-no-repeat z-0"
-        style={{
-          backgroundImage: `url(${logo})`,
-          backgroundSize: "contain", // Adjusted to 'contain' for better fitting
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-          opacity: 0.1, // Adjust opacity for subtle effect
-          filter: "blur(10px)", // Adding blur effect for softness
-        }}
-      />
+      <BackgroundOverlay />
       {/* Header */}
       <header className="bg-black text-white shadow-md fixed w-full z-10">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
@@ -620,6 +611,7 @@ export default function ChalkHouse() {
             </div>
 
             {/* Booking Form */}
+
             <div className="bg-white rounded-xl shadow-lg p-8 border border-gray-200">
               <h3 className="text-3xl font-semibold mb-8 text-gray-800">
                 Book Your Table
@@ -636,8 +628,8 @@ export default function ChalkHouse() {
                     type="text"
                     id="table"
                     value={selectedTable ? selectedTable.name : ""}
-                    className="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
                     readOnly
+                    className="mt-1 block w-full cursor-pointer rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
                   />
                 </div>
                 <div>
@@ -652,7 +644,7 @@ export default function ChalkHouse() {
                     id="date"
                     value={bookingDate}
                     onChange={(e) => setBookingDate(e.target.value)}
-                    className="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+                    className="mt-1 block w-full cursor-pointer rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
                     required
                   />
                 </div>
@@ -668,7 +660,7 @@ export default function ChalkHouse() {
                     id="time"
                     value={bookingTime}
                     onChange={(e) => setBookingTime(e.target.value)}
-                    className="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+                    className="mt-1 block w-full cursor-pointer rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
                     required
                   />
                 </div>
@@ -685,7 +677,7 @@ export default function ChalkHouse() {
                     min="1"
                     value={guests}
                     onChange={(e) => setGuests(parseInt(e.target.value))}
-                    className="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+                    className="mt-1 block w-full cursor-pointer rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
                     required
                   />
                 </div>
@@ -702,17 +694,9 @@ export default function ChalkHouse() {
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
                     placeholder="Enter your phone number"
-                    className="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+                    className="mt-1 block w-full cursor-pointer rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
                     required
                   />
-                </div>
-                <div className="flex justify-between items-center pt-6">
-                  <span className="text-lg font-medium text-gray-800">
-                    Reservation Fee:
-                  </span>
-                  <span className="text-lg font-semibold text-red-600">
-                    50 KSH
-                  </span>
                 </div>
                 <button
                   type="submit"
@@ -723,17 +707,7 @@ export default function ChalkHouse() {
                   }`}
                   disabled={!selectedTable}
                 >
-                  <span className="flex items-center justify-center">
-                    <svg
-                      className="w-5 h-5 mr-2"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path d="M4 2a1 1 0 011-1h10a1 1 0 011 1v2h-2V2H5v2H3V2z" />
-                      <path d="M5 7a1 1 0 011-1h8a1 1 0 011 1v10a1 1 0 01-1 1H6a1 1 0 01-1-1V7z" />
-                    </svg>
-                    Book Now
-                  </span>
+                  Book Now
                 </button>
               </form>
             </div>
