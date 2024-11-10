@@ -30,8 +30,6 @@ import BackgroundOverlay from "./Background";
 
 const carouselImages = [
   background1,
-  background2,
-  background3,
   background4,
   background5,
   background6,
