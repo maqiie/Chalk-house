@@ -1,13 +1,16 @@
-import logo from './logo.svg';
-import './App.css';
-import  Home from '../src/components/Home'
-
-function App() {
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Home from './components/Home';      // Import other components as needed
+import Match from "./components/Match"
+const App = () => {
   return (
-   <div>
-<Home/>
-   </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/match" element={<Match />} />
+        {/* Add other routes for different sections here */}
+      </Routes>
+    </Router>
   );
-}
+};
 
 export default App;
