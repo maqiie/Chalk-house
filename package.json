@@ -31,6 +31,8 @@
     "eject": "react-scripts eject"
   },
   "proxy": "https://api.football-data.org",
+
+  
   "eslintConfig": {
     "extends": [
       "react-app",
