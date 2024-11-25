@@ -27,6 +27,7 @@ import background5 from "../assets/background5.jpg";
 import background6 from "../assets/background6.jpg";
 import AboutImage from "../assets/About.jpg";
 import BackgroundOverlay from "./Background";
+import theatre from "../assets/theatre.jpeg";
 
 const carouselImages = [background1, background4, background5, background6];
 
@@ -154,104 +155,112 @@ export default function ChalkHouse() {
       <BackgroundOverlay />
       {/* Header */}
       <header className="bg-black text-white shadow-md fixed w-full z-10">
-  <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-    <h1 className="text-3xl font-bold">The Chalkhouse</h1>
-    <nav className="hidden md:block">
-      <ul className="flex space-x-6">
-        {[
-          "Home",
-          "About",
-          "Games",
-          "Challenges",
-          "Book",
-          "WiFi",
-          "Contact",
-        ].map((item) => (
-          <li key={item}>
-            <a
-              href={`#${item.toLowerCase()}`}
-              className={`text-white hover:text-red-500 transition-colors duration-300 ${
-                activeSection === item.toLowerCase() ? "text-red-500" : ""
-              }`}
-            >
-              {item}
-            </a>
-          </li>
-        ))}
-        {/* Add Match as a link that navigates to the /match route */}
-        <li key="Match">
-          <a
-            href="/match"
-            className="text-white hover:text-red-500 transition-colors duration-300"
+        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
+          <h1 className="text-3xl font-bold">The Chalkhouse</h1>
+          <nav className="hidden md:block">
+            <ul className="flex space-x-6">
+              {[
+                "Home",
+                "About",
+                "Games",
+                "Challenges",
+                "Book",
+                "WiFi",
+                "Contact",
+              ].map((item) => (
+                <li key={item}>
+                  <a
+                    href={`#${item.toLowerCase()}`}
+                    className={`text-white hover:text-red-500 transition-colors duration-300 ${
+                      activeSection === item.toLowerCase() ? "text-red-500" : ""
+                    }`}
+                  >
+                    {item}
+                  </a>
+                </li>
+              ))}
+              {/* Add Match as a link that navigates to the /match route */}
+              <li key="Match">
+                <a
+                  href="/match"
+                  className="text-white hover:text-red-500 transition-colors duration-300"
+                >
+                  Match
+                </a>
+              </li>
+            </ul>
+          </nav>
+          <button
+            className="md:hidden"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
-            Match
-          </a>
-        </li>
-      </ul>
-    </nav>
-    <button className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-      {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-    </button>
-  </div>
+            {isMenuOpen ? (
+              <X className="w-6 h-6" />
+            ) : (
+              <Menu className="w-6 h-6" />
+            )}
+          </button>
+        </div>
 
-  <AnimatePresence>
-    {isMenuOpen && (
-      <motion.div
-        initial={{ opacity: 0, height: 0 }}
-        animate={{ opacity: 1, height: "auto" }}
-        exit={{ opacity: 0, height: 0 }}
-        className="md:hidden bg-black"
-      >
-        <ul className="py-4">
-          {[
-            "Home",
-            "About",
-            "Games",
-            "Challenges",
-            "Book",
-            "WiFi",
-            "Contact",
-          ].map((item) => (
-            <motion.li
-              key={item}
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
-              transition={{ duration: 0.2 }}
+        <AnimatePresence>
+          {isMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              className="md:hidden bg-black"
             >
-              <a
-                href={`#${item.toLowerCase()}`}
-                className={`block py-2 px-4 text-white hover:text-red-500 transition-colors duration-300 ${
-                  activeSection === item.toLowerCase() ? "text-red-500" : ""
-                }`}
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {item}
-              </a>
-            </motion.li>
-          ))}
-          {/* Add Match to the mobile menu */}
-          <motion.li
-            key="Match"
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -20 }}
-            transition={{ duration: 0.2 }}
-          >
-            <a
-              href="/match"
-              className="block py-2 px-4 text-white hover:text-red-500 transition-colors duration-300"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Match
-            </a>
-          </motion.li>
-        </ul>
-      </motion.div>
-    )}
-  </AnimatePresence>
-</header>
-
+              <ul className="py-4">
+                {[
+                  "Home",
+                  "About",
+                  "Games",
+                  "Challenges",
+                  "Book",
+                  "WiFi",
+                  "Contact",
+                ].map((item) => (
+                  <motion.li
+                    key={item}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -20 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <a
+                      href={`#${item.toLowerCase()}`}
+                      className={`block py-2 px-4 text-white hover:text-red-500 transition-colors duration-300 ${
+                        activeSection === item.toLowerCase()
+                          ? "text-red-500"
+                          : ""
+                      }`}
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      {item}
+                    </a>
+                  </motion.li>
+                ))}
+                {/* Add Match to the mobile menu */}
+                <motion.li
+                  key="Match"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <a
+                    href="/match"
+                    className="block py-2 px-4 text-white hover:text-red-500 transition-colors duration-300"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    Match
+                  </a>
+                </motion.li>
+              </ul>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </header>
 
       {/* Hero Section with Mixed Animations */}
       <section id="home" className="relative h-screen overflow-hidden">
@@ -277,36 +286,54 @@ export default function ChalkHouse() {
             }}
           />
         ))}
+<div className="absolute inset-0 bg-black bg-opacity-40 flex flex-col items-center justify-center text-center text-white z-10 px-4">
+  {/* Top Text: Animated Typewriter Effect */}
+  <motion.h2
+    initial={{ opacity: 0, y: 40 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ delay: 0.2, duration: 1, ease: "easeOut" }}
+    className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 drop-shadow-lg leading-tight"
+  >
+    <motion.span
+      style={{
+        display: 'inline-block',
+        overflow: 'hidden',
+        borderRight: '0.15em solid white', // Simulating the cursor
+        whiteSpace: 'nowrap',
+        width: 'auto',
+        animation: 'typing 3s steps(30) 1s 1 normal both, blink 0.75s step-end infinite',
+      }}
+      className="inline-block"
+    >
+      Welcome to
+      <span className="block sm:inline">
+        <span className="font-extrabold text-red-400">The Chalkhouse</span>
+      </span>
+    </motion.span>
+  </motion.h2>
 
-        <div className="absolute inset-0 bg-black bg-opacity-40 flex flex-col items-center justify-center text-center text-white z-10 px-4">
-          <motion.h2
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 1, ease: "easeOut" }}
-            className="text-6xl md:text-7xl font-bold mb-6 drop-shadow-lg leading-tight"
-          >
-            Welcome to The Chalkhouse
-          </motion.h2>
+  {/* Bottom Text: Appears After Top Text finishes typing */}
+  <motion.p
+    initial={{ opacity: 0, y: 30 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ delay: 4, duration: 1.2, ease: "easeOut" }} // Delayed to start after typing
+    className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-light mb-6 max-w-3xl mx-auto leading-relaxed tracking-wide drop-shadow-md"
+  >
+    Where skills meet chill - Your ultimate pool & billiards experience
+  </motion.p>
 
-          <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 1.2, ease: "easeOut" }}
-            className="text-xl md:text-3xl font-light mb-12 max-w-3xl mx-auto leading-relaxed tracking-wide drop-shadow-md"
-          >
-            Where skills meet chill - Your ultimate pool & billiards experience
-          </motion.p>
+  {/* Call to Action Button */}
+  <motion.a
+    initial={{ opacity: 0, scale: 0.8 }}
+    animate={{ opacity: 1, scale: 1 }}
+    transition={{ delay: 0.6, duration: 0.8, ease: "easeOut" }}
+    href="#book"
+    className="bg-gradient-to-r from-red-500 to-yellow-500 text-white font-bold py-4 px-8 sm:px-10 rounded-full shadow-2xl hover:shadow-xl transition-transform duration-300 transform hover:scale-110 focus:ring-4 focus:ring-red-500 focus:outline-none animate-heartbeat"
+  >
+    Reserve Your Spot
+  </motion.a>
+</div>
 
-          <motion.a
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.6, duration: 0.8, ease: "easeOut" }}
-            href="#book"
-            className="bg-gradient-to-r from-red-500 to-yellow-500 text-white font-bold py-4 px-10 rounded-full shadow-2xl hover:shadow-xl transition-transform duration-300 transform hover:scale-110 focus:ring-4 focus:ring-red-500 focus:outline-none animate-heartbeat" // Use the animate class here
-          >
-            Reserve Your Spot
-          </motion.a>
-        </div>
 
         {/* Navigation Buttons */}
         <motion.button
@@ -400,41 +427,61 @@ export default function ChalkHouse() {
       </section>
 
       {/* Pool Games Section */}
-      <section id="games" className="py-20 bg-gray-100">
+      <section
+        id="games"
+        className="py-20 bg-gradient-to-r from-indigo-500 via-purple-600 to-pink-500 text-white"
+      >
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold mb-12 text-center text-gray-800">
-            Our Games
+          <h2 className="text-4xl font-bold mb-12 text-center text-white">
+            Our Games & Theatre
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
             {[
-              { name: "8-Ball", image: background1 },
-              { name: "9-Ball", image: background2 },
-              { name: "Snooker", image: background3 },
+              {
+                name: "8-Ball",
+                image: background1,
+                description:
+                  "Experience the thrill of 8-Ball on our professional tables.",
+              },
+              {
+                name: "9-Ball",
+                image: background2,
+                description:
+                  "Step up your game with 9-Ball and challenge your skills.",
+              },
+              {
+                name: "Snooker",
+                image: background3,
+                description: "Test your strategy and precision in Snooker.",
+              },
+              {
+                name: "Chalkhouse Theatre",
+                image: theatre,
+                description:
+                  "Stream live games, latest movies, and exclusive events.",
+              },
             ].map((game, index) => (
               <motion.div
                 key={game.name}
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-white rounded-lg shadow-xl overflow-hidden group transform transition-all duration-300 hover:scale-105"
+                className="bg-white rounded-xl shadow-2xl overflow-hidden group transform transition-all duration-300 hover:scale-105 hover:shadow-xl"
               >
-                <div className="relative overflow-hidden">
+                <div className="relative overflow-hidden rounded-t-xl">
                   <img
                     src={game.image}
                     alt={game.name}
-                    className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-110"
+                    className="w-full h-64 object-cover object-center transition-transform duration-300 group-hover:scale-110 rounded-t-xl"
                   />
-                  <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <h3 className="text-2xl font-semibold text-white">
+                  <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <h3 className="text-3xl font-semibold text-white">
                       {game.name}
                     </h3>
                   </div>
                 </div>
                 <div className="p-6">
-                  <p className="text-gray-700">
-                    Experience the thrill of {game.name} on our professional
-                    tables.
-                  </p>
+                  <p className="text-gray-800 text-lg">{game.description}</p>
                 </div>
               </motion.div>
             ))}
